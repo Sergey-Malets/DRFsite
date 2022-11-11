@@ -13,13 +13,15 @@ from .serializers import WomenSerializer
 
 class WomenAPIView(APIView):
     def get(self,request):
-        lst = Women.objects.all().values() #что бы был не кворисет а набор значений
-        return Response({'posts':list(lst)})
+        w = Women.objects.all()
+        return Response({'posts':WomenSerializer(w, many=True).data}) #many говорит о том что сериализатор должен обрабатывать список записей
 
     def post(self,request):
+        serializer = WomenSerializer(data=request.data) #создаём сериал. на основе данных кот поступили с ПОСТ запросом
+        serializer.is_valid(raise_exception=True) #делаем проверку корректность принятых данных
         post_new = Women.objects.create(
             title = request.data['title'],
             content = request.data['content'],
             cat_id = request.data['cat_id']
         )
-        return Response({'post': model_to_dict(post_new)})
+        return Response({'post': WomenSerializer(post_new).data})
