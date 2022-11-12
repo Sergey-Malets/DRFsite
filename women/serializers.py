@@ -15,7 +15,7 @@ from .models import Women
 class WomenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Women
-        fields = ("title","content","cat")  #__all__ если хотим все поля
+        fields = ("__all__")  #__all__ если хотим все поля
 
 # def encode():
 #     model = WomenModel('Angel','Content: Angel')
