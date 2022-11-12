@@ -11,7 +11,7 @@ from .serializers import WomenSerializer
 #     queryset = Women.objects.all()
 #     serializer_class = WomenSerializer
 
-class WomenAPIList(generics. ):
+class WomenAPIList(generics.ListCreateAPIView):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
 
