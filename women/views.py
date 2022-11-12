@@ -11,6 +11,11 @@ from .serializers import WomenSerializer
 #     queryset = Women.objects.all()
 #     serializer_class = WomenSerializer
 
+class WomenAPIList(generics. ):
+    queryset = Women.objects.all()
+    serializer_class = WomenSerializer
+
+
 class WomenAPIView(APIView):
     def get(self,request):
         w = Women.objects.all()
