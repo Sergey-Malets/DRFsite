@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from women.views import *
 from rest_framework import routers
+from women.routers import MyCustomRouter
 
 #create object
-router = routers.SimpleRouter()
-router.register(r'women', WomenViewSet)
+router = MyCustomRouter()
+router.register(r'women', WomenViewSet, basename='women')
+# basename= параметр названия урл ссылки, по умолчанию равняется названию класса модели.
 
-print(router.urls)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
